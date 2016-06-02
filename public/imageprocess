@@ -1,0 +1,36 @@
+class ImageController < ApplicationController
+  def index
+
+	require 'chunky_png'
+
+	#include ChunkyPNG::Color
+
+	images = [
+	ChunkyPNG::Image.from_file('./public/Base_Image.png'),
+	ChunkyPNG::Image.from_file('./public/Drone_Capture1.png')
+	]
+	
+	diff = []
+
+		images.first.height.times do |y|
+		  images.first.row(y).each_with_index do |pixel, x|
+		    diff << [x,y] unless pixel == images.last[x,y]
+		  end
+		end
+
+		@total = images.first.pixels.length
+		@pixel_changed = diff.length
+		@pixel_changed_percent = (diff.length.to_f / images.first.pixels.length) * 100
+		puts "pixels (total):     #{images.first.pixels.length}"
+		puts "pixels changed:     #{diff.length}"
+		puts "pixels changed (%): #{(diff.length.to_f / images.first.pixels.length) * 100}%"
+
+		x, y = diff.map{ |xy| xy[0] }, diff.map{ |xy| xy[1] }
+
+		images.last.rect(x.min, y.min, x.max, y.max, ChunkyPNG::Color.rgb(0,255,0))
+		images.last.save('./public/diff.png')
+
+
+
+  end
+end

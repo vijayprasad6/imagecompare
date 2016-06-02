@@ -1,0 +1,40 @@
+<h1>ImageProcessing</h1>
+<p>All Images</p>
+<table>
+<%# images.each do| img|%>
+<tr>
+	<td width="60" cellspaceinf><b>SL No.</b></td>
+	<td><b>Base Image</b></td>
+	<td><b>Image to be compare</b></td>
+	<td><b>Difference Between Images</b></td>
+	<td><b>Images's Meta Data</b></td>
+</tr>
+<tr>
+<tr>
+	<td width="60">1</td>
+	<td><img src="Base_Image.png" height="300" width="300"></td>
+	<td><img src="Capture1.png" height="300" width="300"></td>
+	<td><img src="0_diff.png" height="300" width="300"></td>		
+	<td>	
+			<p><b>Total Deviation: </b><%=@total[0]%></p>
+			<p><b>Deviation in Pixels: </b><%=@pixels_changed[0]%></p>
+			<p><b>Deviation in pixel percent:</b> <%=@image_changed[0]%></p>
+
+	</td></tr>
+<tr>
+<tr>
+	<td width="60">2</td>
+	<td><img src="Base_Image.png" height="300" width="300"></td>
+	<td><img src="Capture2.png" height="300" width="300"></td>
+	<td><img src="1_diff.png" height="300" width="300"></td>
+	<td>	
+			<p><b>Total Deviation: </b><%=@total[1]%></p>
+			<p><b>Deviation in Pixels: </b><%=@pixels_changed[1]%></p>
+			<p><b>Deviation in pixel percent: </b><%=@image_changed[1]%></p>
+
+	</td>
+
+<%# end%>
+</tr>
+
+</table>
